@@ -5,7 +5,9 @@ import com.endava.lambda.NoParams;
 import com.endava.lambda.Operation;
 import com.endava.lambda.PrintText;
 
-import java.util.PrimitiveIterator;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Main {
 
@@ -58,6 +60,45 @@ public class Main {
         // list.forEach(n -> System.out.println(n));
         // list.forEach(System.out::println);
 
+
+        //-----------------------------------////-----------------------------------//
+
+        Collection<Intern> interns = Arrays.asList(
+                new Intern("Max", 18, InternStream.JAVA),
+                new Intern("Petr", 23, InternStream.MOBILE),
+                new Intern("Elena", 30, InternStream.L2),
+                new Intern("Kristina", 18, InternStream.L2),
+                new Intern("Mr Brown", 59, InternStream.DEVOPS)
+        );
+
+//        List<Intern> l2Interns = interns.stream().filter(it -> it.getInternStream() == InternStream.L2 &&
+//                it.getAge() > 20).collect(Collectors.toList());
+//        System.out.println("L2 interns:" + l2Interns);
+
+//        double averageAge = interns.stream().mapToInt(Intern::getAge).average().getAsDouble();
+//        System.out.println("Average age: " + averageAge);
+
+//        Integer max = interns.stream().mapToInt(Intern::getAge).max().getAsInt();
+//        System.out.println("Max age: " + max);
+
+//        String max = interns.stream().max(Comparator.comparing(Intern::getName)).toString();
+//        System.out.println("Max name: " + max);
+
+//        List<String> list1 = Arrays.asList("s1", "s2", "s3");
+//        List<Boolean> list2 = Arrays.asList(true, false, true);
+//        List<String> list = IntStream.range(0, list1.size())
+//                .filter(it -> list2.get(it))
+//                .mapToObj(it -> list1.get(it))
+//                .collect(Collectors.toList());
+//        System.out.println(list);
+
+        List<String> list1 = Arrays.asList("s1", "s2", "s3");
+        List<Integer> list2 = Arrays.asList(1, 3, 2);
+        List<String> list = IntStream.range(0, list1.size())
+                .filter(it -> list2.get(it) % 2 != 0)
+                .mapToObj(it -> list1.get(it))
+                .collect(Collectors.toList());
+        System.out.println(list);
 
     }
 }
